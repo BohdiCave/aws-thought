@@ -6,7 +6,7 @@ import ThoughtList from '../components/ThoughtList';
 
 const AWS = require("aws-sdk");
 const awsConfig = {
-  region: "us-east-2",
+  region: "us-east-1",
   endpoint: "http://localhost:8000",
 };
 
@@ -32,7 +32,7 @@ const Profile = props => {
       setIsLoaded(true);
     }
     fetchData();
-  }, []);
+  }, [userParam]);
 
   return (
     <div>
