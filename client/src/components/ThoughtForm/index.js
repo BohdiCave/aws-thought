@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 const ThoughtForm = () => {
-  const [formState, setFormState] = useState({ username: '', thought: '' });
+  const [formState, setFormState] = useState({ username: '', thought: ''});
   const [characterCount, setCharacterCount] = useState(0);
   const fileInput = useRef(null);
 
@@ -83,7 +83,7 @@ const ThoughtForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-        <label className="form-input col-12  p-1">
+        <label className="form-input col-12 p-1">
           Add an image to your thought: 
           <input
             type="file"
@@ -100,7 +100,7 @@ const ThoughtForm = () => {
         </label>
         <button className="btn col-12 col-md-3" type="submit">
           Submit
-          </button>
+        </button>
       </form>
     </div>
   );
