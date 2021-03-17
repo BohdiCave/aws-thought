@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AWS = require("aws-sdk");
 const awsConfig = {
-  region: "us-east-2",
-  endpoint: "http://localhost:8000",
-
+  region: "us-east-1"
 };
 AWS.config.update(awsConfig);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -33,12 +31,14 @@ router.get('/users/:username', (req, res) => {
     ExpressionAttributeNames: {
       "#un": "username",
       "#ca": "createdAt",
-      "#th": "thought"
+      "#th": "thought",
+      "#img": "image"
     },
     ExpressionAttributeValues: {
       ":user": req.params.username
     },
-    ProjectionExpression: "#th, #ca"
+    ProjectionExpression: "#th, #ca, #img",
+    ScanIndexForward: false
   };
 
   dynamodb.query(params, (err, data) => {
@@ -59,7 +59,8 @@ router.post('/users', (req, res) => {
     Item: {
       "username": req.body.username,
       "createdAt": Date.now(),
-      "thought": req.body.thought
+      "thought": req.body.thought,
+      "image": req.body.image
     }
   };
   dynamodb.put(params, (err, data) => {
@@ -72,7 +73,7 @@ router.post('/users', (req, res) => {
     }
   });
 });
-// // Create new user
+// // Create new user 
 // router.get('/create', (req, res) => {
 //   const params = {
 //     TableName: table,
@@ -100,37 +101,37 @@ router.post('/users', (req, res) => {
 // });
 
 // Destroy
-router.delete('/users/:time/:username', (req, res) => {
+// router.delete('/users/:time/:username', (req, res) => {
 
-  const username = "Ray Davis"
-  const time = 1602466687289;
-  const thought = "Tolerance only for those who agree with you is no tolerance at all.";
+//   const username = "Ray Davis"
+//   const time = 1602466687289;
+//   const thought = "Tolerance only for those who agree with you is no tolerance at all.";
 
-  const params = {
-    TableName: table,
-    Key: {
-      "username": username,
-      "createdAt": time,
-    },
-    KeyConditionExpression: "#ca = :time",
-    ExpressionAttributeNames: {
-      "#ca": "createdAt"
-    },
-    ExpressionAttributeValues: {
-      ":time": time,
-    }
-  }
+//   const params = {
+//     TableName: table,
+//     Key: {
+//       "username": username,
+//       "createdAt": time,
+//     },
+//     KeyConditionExpression: "#ca = :time",
+//     ExpressionAttributeNames: {
+//       "#ca": "createdAt"
+//     },
+//     ExpressionAttributeValues: {
+//       ":time": time,
+//     }
+//   }
 
-  console.log("Attempting a conditional delete...");
-  dynamodb.delete(params, (err, data) => {
-    if (err) {
-      console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
-      res.status(500).json(err); // an error occurred
-    } else {
-      console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
-    }
-  });
-});
+//   console.log("Attempting a conditional delete...");
+//   dynamodb.delete(params, (err, data) => {
+//     if (err) {
+//       console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
+//       res.status(500).json(err); // an error occurred
+//     } else {
+//       console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
+//     }
+//   });
+// });
 
 // // update
 // router.put('/users/:username', (req, res) => {

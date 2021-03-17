@@ -2,8 +2,7 @@ const AWS = require("aws-sdk");
 const fs = require('fs');
 
 AWS.config.update({
-  region: "us-east-2",
-  endpoint: "http://localhost:8000"
+  region: "us-east-1"
 });
 const dynamodb = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
@@ -15,7 +14,8 @@ allUsers.forEach(user => {
     Item: {
       "username": user.username,
       "createdAt": user.createdAt,
-      "thought": user.thought
+      "thought": user.thought,
+      "image": user.image
     }
   };
 
