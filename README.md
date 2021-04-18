@@ -2,7 +2,7 @@
 
 AWS-deployed journaling app - an exercise in setting up and deploying a React-Express-Node.js app to Amazon Linux EC2 instance, using S3 bucket for storage and DynamoDB for backend data processing. 
 
-# Technology stack:
+## Technology stack
 
 * Frontend: React.js
   * react-dom - for accessing the virtual DOM in React
@@ -22,3 +22,12 @@ AWS-deployed journaling app - an exercise in setting up and deploying a React-Ex
   * EC2 instance for app deployment
   * AIM authentication
   * SSH setup of Amazon Linux core using Nginx
+
+## Screenshots
+
+![Screen1](./client/public/aws-screen1.png)
+
+![Screen2](./client/public/aws-screen2.png)
+
+![Screen3](./client/public/aws-screen3.png)
+
