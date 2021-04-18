@@ -9,7 +9,7 @@ const params = fileName => {
     Key: `${uuidv4()}.${fileType}`,
     Body: fileName.buffer,
     ACL: 'public-read'
-  };
+  };cd 
 
   return imageParams;
 };

@@ -76,7 +76,7 @@ router.post('/users', (req, res) => {
 // // Create new user 
 // router.get('/create', (req, res) => {
 //   const params = {
-//     TableName: table,
+//     TableName: table,aw
 //     Item: {
 //       "username": "Carol Dweck",
 //       "createdAt": 1602018401105,
